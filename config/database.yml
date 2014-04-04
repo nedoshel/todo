@@ -1,0 +1,18 @@
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: todo_sync_development
+  pool: 5
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: todo_sync_production
+  pool: 5
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock
