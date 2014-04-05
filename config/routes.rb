@@ -1,5 +1,7 @@
 TodoSync::Application.routes.draw do
 
+  resources :tasks
+
   root 'home#index'
 
   # Example of regular route:

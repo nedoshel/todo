@@ -1,0 +1,20 @@
+= form_for @task, :html => { :class => "form-horizontal" } do |f|
+  .form-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'form-control'
+  .form-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_field :description, :class => 'form-control'
+  .form-group
+    = f.label :task_at, :class => 'control-label'
+    .controls
+      = f.text_field :task_at, :class => 'form-control'
+  .form-group
+    = f.label :is_complete, :class => 'control-label'
+    .controls
+      = f.text_field :is_complete, :class => 'form-control'
+  = f.submit nil, :class => 'btn btn-primary'
+  '
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn'
