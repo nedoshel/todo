@@ -6,6 +6,14 @@ development:
   adapter: "Faye"
   async: true
 
+# Pusher
+# development:
+#   adapter_javascript_url: "http://js.pusher.com/2.0/pusher.min.js"
+#   app_id: "YOUR_PUSHER_APP_ID"
+#   api_key: "YOUR_PUSHER_API_KEY"
+#   auth_token: "YOUR_PUSHER_SECRET"
+#   adapter: "Pusher"
+#   async: true
 
 test:
   server: "http://localhost:9292/faye"
@@ -16,7 +24,7 @@ test:
 
 production:
   server: "http://todo.muravkin.tk/faye"
-  adapter_javascript_url: "http://localhost:9292/faye/faye.js"
+  adapter_javascript_url: "http://todo.muravkin.tk:9292/faye/faye.js"
   adapter: "Faye"
-  auth_token: "6756bb98974b9177b4f6abc1b20bb661dc3706b46f46656c5f00ff00a405eecd"
+  auth_token: "01f59a512873bfbf88b1e629405b792fa4f2fdf4e6252cb228d2abe79cd0da9e"
   async: true

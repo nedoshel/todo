@@ -5,7 +5,7 @@ require "faye"
 require "sync"
 
 Faye::WebSocket.load_adapter 'thin'
-Faye.logger = :debug
+Faye.logger =  Logger.new(STDOUT)
 
 Sync.load_config(
   File.expand_path("../config/sync.yml", __FILE__),
