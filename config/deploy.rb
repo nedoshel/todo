@@ -58,9 +58,8 @@ set :faye_config, "#{deploy_to}/current/sync.ru"
 before 'deploy:migrate', 'deploy:symlink_shared'
 before 'deploy:update_code', 'faye:stop'
 before 'deploy:assets:precompile', 'deploy:migrate'
-#before 'deploy:restart', 'run_rsync:restart'
+before 'deploy:restart', 'faye:start'
 
-after 'deploy:finalize_update', 'faye:start'
 after 'deploy:symlink_shared', 'deploy:create_db'
 after 'deploy', 'deploy:cleanup'
 
@@ -108,10 +107,13 @@ end
 
 namespace :faye do
   desc "Start Faye"
+
   task :start do
-    run "cd #{deploy_to}/current && bundle exec rackup #{faye_config} -s thin -E production -D --pid #{faye_pid}"
+    run "cd #{deploy_to}/current && bundle exec rackup #{faye_config} -E production -D -P #{faye_pid}"
   end
+
   desc "Stop Faye"
+
   task :stop do
     run " kill -INT `cat #{faye_pid}` || true"
   end
