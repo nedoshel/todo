@@ -52,8 +52,7 @@ set :bundle_cmd, "/home/#{user}/.rvm/gems/#{rvm_ruby_string}@global/bin/bundle"
 before 'deploy:migrate', 'deploy:symlink_shared'
 after 'deploy:symlink_shared', 'deploy:create_db'
 before 'deploy:assets:precompile', 'deploy:migrate'
-# before 'deploy:start', 'deploy:run_rsync'
-before 'deploy:restart', 'deploy:restart'
+before 'deploy:restart', 'run_rsync:restart'
 after 'deploy', 'deploy:cleanup'
 
 
@@ -100,7 +99,7 @@ namespace :run_rsync do
     run "cd #{release_path};RAILS_ENV=production bundle exec rackup sync.ru -s thin -E production -D -P tmp/pids/sync.ru.pid"
   end
 
-  desc "Stop private_pub server"
+  desc "Stop sync.ru server"
   task :stop do
     run "cd #{current_path};if [ -f tmp/pids/sync.ru.pid ] && [ -e /proc/$(cat tmp/pids/sync.ru.pid) ]; then kill -9 `cat tmp/pids/sync.ru.pid`; fi"
   end
