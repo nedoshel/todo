@@ -60,11 +60,11 @@ namespace :deploy do
   desc "Restart Thin"
   task :restart, :except => { :no_release => true } do
     run "cd #{current_path} ; RAILS_ENV=#{rails_env} #{bundle_cmd} exec thin restart -C #{thin_config}"
-  end
+    # RAILS_ENV=production bundle exec thin restart -C config/thin/todo.yml
 
   desc "Start Thin"
   task :start, :except => { :no_release => true } do
-    run "cd #{current_path} ; RAILS_ENV=#{rails_env} #{bundle_cmd} exec thin start -C #{thin_config}"
+    run "cd #{current_path} ; RAILS_ENV=#{rails_env} #{bundle_cmd} exec thin start -C #{thin_config}"#
   end
 
   desc "Stop Thin"
@@ -96,7 +96,7 @@ end
 namespace :run_rsync do
   desc "Start sync.ru server"
   task :start do
-    run "cd #{release_path};RAILS_ENV=production bundle exec rackup sync.ru -s thin -E production -D -P tmp/pids/sync.ru.pid"
+    run "cd #{release_path};RAILS_ENV=production bundle exec rackup sync.ru -E production -D -P tmp/pids/sync.ru.pid"
   end
 
   desc "Stop sync.ru server"
