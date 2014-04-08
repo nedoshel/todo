@@ -17,4 +17,5 @@
 //= require bootstrap-datetimepicker
 //= require locales/bootstrap-datetimepicker.ru.js
 //= require sync
+//= require_tree ./sync_views/
 //= require_tree .

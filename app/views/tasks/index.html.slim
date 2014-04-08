@@ -1,16 +1,15 @@
-- model_class = Task
 div class="page-header"
-  h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  h1= Task.model_name.human(count: 2)
 table class="table table-striped"
   thead
     tr
-      th= model_class.human_attribute_name(:id)
-      th= model_class.human_attribute_name(:title)
-      th= model_class.human_attribute_name(:description)
-      th= model_class.human_attribute_name(:task_at)
-      th= model_class.human_attribute_name(:is_complete)
-      th= model_class.human_attribute_name(:created_at)
-      th=t '.actions', :default => t("helpers.actions")
+      th= Task.human_attribute_name(:id)
+      th= Task.human_attribute_name(:title)
+      th= Task.human_attribute_name(:description)
+      th= Task.human_attribute_name(:task_at)
+      th= Task.human_attribute_name(:is_complete)
+      th= Task.human_attribute_name(:created_at)
+      th
   tbody
     = sync_new partial: 'task_list_view', resource: Task.new
     = sync partial: 'task_list_view', collection: @tasks

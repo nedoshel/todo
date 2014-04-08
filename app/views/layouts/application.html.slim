@@ -24,7 +24,7 @@ html lang="en"
   body
     = nav_bar fixed: :top, :brand => "TodoSync" do
       - menu_group :pull => :right do
-        = menu_item "Tasks", tasks_path
+        = menu_item Task.model_name.human(count: 2), tasks_path
 
     .container.fluid.main-body
       .row

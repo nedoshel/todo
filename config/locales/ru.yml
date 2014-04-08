@@ -1,5 +1,9 @@
 ru:
   activerecord:
+    models:
+      task:
+        one: Задача
+        other: Задачи
     attributes:
       task:
         title: Название
@@ -8,3 +12,7 @@ ru:
         id: Номер
         created_at: Дата добовления
         task_at: Время задачи
+  helpers:
+    links:
+      create: Создать
+

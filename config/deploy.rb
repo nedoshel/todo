@@ -52,7 +52,8 @@ set :bundle_cmd, "/home/#{user}/.rvm/gems/#{rvm_ruby_string}@global/bin/bundle"
 before 'deploy:migrate', 'deploy:symlink_shared'
 after 'deploy:symlink_shared', 'deploy:create_db'
 before 'deploy:assets:precompile', 'deploy:migrate'
-before 'deploy:start', 'deploy:run_rsync'
+# before 'deploy:start', 'deploy:run_rsync'
+before 'deploy:restart', 'deploy:run_rsync'
 after 'deploy', 'deploy:cleanup'
 
 
