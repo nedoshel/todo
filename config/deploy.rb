@@ -49,10 +49,19 @@ set :keep_releases, 2
 
 set :bundle_cmd, "/home/#{user}/.rvm/gems/#{rvm_ruby_string}@global/bin/bundle"
 
+
+set :faye_pid, "#{deploy_to}/shared/pids/faye.pid"
+set :faye_config, "#{deploy_to}/current/sync.ru"
+
+
+
 before 'deploy:migrate', 'deploy:symlink_shared'
-after 'deploy:symlink_shared', 'deploy:create_db'
+before 'deploy:update_code', 'faye:stop'
 before 'deploy:assets:precompile', 'deploy:migrate'
-before 'deploy:restart', 'run_rsync:restart'
+#before 'deploy:restart', 'run_rsync:restart'
+
+after 'deploy:finalize_update', 'faye:start'
+after 'deploy:symlink_shared', 'deploy:create_db'
 after 'deploy', 'deploy:cleanup'
 
 
@@ -96,23 +105,36 @@ namespace :deploy do
 
 end
 
-namespace :run_rsync do
-  desc "Start sync.ru server"
+
+namespace :faye do
+  desc "Start Faye"
   task :start do
-    run "cd #{release_path};RAILS_ENV=production bundle exec rackup sync.ru -E production -D -P tmp/pids/sync.ru.pid"
+    run "cd #{deploy_to}/current && bundle exec rackup #{faye_config} -s thin -E production -D --pid #{faye_pid}"
   end
-
-  desc "Stop sync.ru server"
+  desc "Stop Faye"
   task :stop do
-    run "cd #{current_path};if [ -f tmp/pids/sync.ru.pid ] && [ -e /proc/$(cat tmp/pids/sync.ru.pid) ]; then kill -9 `cat tmp/pids/sync.ru.pid`; fi"
-  end
-
-  desc "Restart sync.ru server"
-  task :restart do
-    stop
-    start
+    run "kill `cat #{faye_pid}` || true"
   end
 end
+
+
+# namespace :run_rsync do
+#   desc "Start sync.ru server"
+#   task :start do
+#     run "cd #{release_path};RAILS_ENV=production bundle exec rackup sync.ru -S thin -E production -D -P tmp/pids/sync.ru.pid"
+#   end
+
+#   desc "Stop sync.ru server"
+#   task :stop do
+#     run "cd #{current_path};if [ -f tmp/pids/sync.ru.pid ] && [ -e /proc/$(cat tmp/pids/sync.ru.pid) ]; then kill -9 `cat tmp/pids/sync.ru.pid`; fi"
+#   end
+
+#   desc "Restart sync.ru server"
+#   task :restart do
+#     stop
+#     start
+#   end
+# end
 
 namespace :cache do
 
