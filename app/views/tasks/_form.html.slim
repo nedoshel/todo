@@ -1,8 +1,11 @@
-= simple_form_for @task, :html => { :class => "form-horizontal" } do |f|
+= simple_form_for Task.new, remote: true, html: { class: "form-horizontal" } do |f|
   = f.input :title
   = f.input :description
-  = f.input :task_at
+  .form-group
+    .input-group.date.datetimepicker
+      = f.text_field :task_at, class: 'form-control'
+      span.input-group-addon
+        span.glyphicon.glyphicon-calendar
   = f.input :is_complete
-  = f.submit nil, :class => 'btn btn-primary'
-
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn'
+  = f.submit nil, class: 'btn btn-primary'
+  = link_to t('.cancel', default: t("helpers.links.cancel")), tasks_path, class: 'btn'

@@ -8,3 +8,7 @@
   .main-body {
     margin-top: 40px;
   }
+
+  .btn-danger {
+    color: white;
+  }

@@ -17,22 +17,11 @@ html lang="en"
     = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "application"
+    = javascript_include_tag Sync.adapter_javascript_url
 
 
 
   body
-    / .navbar.navbar-default.navbar-static-top
-    /     .container
-    /       button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
-    /         span.icon-bar
-    /         span.icon-bar
-    /         span.icon-bar
-    /       a.navbar-brand href="#"TodoSync
-    /       .nav-collapse.collapse.navbar-responsive-collapse
-    /         ul.nav.navbar-nav
-    /           li= link_to "Link 1", "/path1"
-    /           li= link_to "Link 2", "/path2"
-    /           li= link_to "Link 3", "/path3"
     = nav_bar fixed: :top, :brand => "TodoSync" do
       - menu_group :pull => :right do
         = menu_item "Tasks", tasks_path
@@ -45,4 +34,4 @@ html lang="en"
 
 
       footer
-        p &copy; Company 2014
+        / p &copy; Company 2014

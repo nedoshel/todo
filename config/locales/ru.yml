@@ -1,0 +1,10 @@
+ru:
+  activerecord:
+    attributes:
+      task:
+        title: Название
+        description: Описание
+        is_complete: Выполнение
+        id: Номер
+        created_at: Дата добовления
+        task_at: Время задачи

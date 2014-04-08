@@ -52,6 +52,7 @@ set :bundle_cmd, "/home/#{user}/.rvm/gems/#{rvm_ruby_string}@global/bin/bundle"
 before 'deploy:migrate', 'deploy:symlink_shared'
 after 'deploy:symlink_shared', 'deploy:create_db'
 before 'deploy:assets:precompile', 'deploy:migrate'
+before 'deploy:start', 'deploy:run_rsync'
 after 'deploy', 'deploy:cleanup'
 
 
@@ -88,6 +89,10 @@ namespace :deploy do
 
   task :create_admin do
      run "cd #{release_path} && bundle exec rake admin:create RAILS_ENV=production"
+  end
+
+  task :run_rsync do
+    run "cd #{release_path} && bundle exec rake rackup sync.ru -E production"
   end
 
 end
