@@ -61,7 +61,7 @@ namespace :deploy do
   task :restart, :except => { :no_release => true } do
     run "cd #{current_path} ; RAILS_ENV=#{rails_env} #{bundle_cmd} exec thin restart -C #{thin_config}"
     # RAILS_ENV=production bundle exec thin restart -C config/thin/todo.yml
-
+  end
   desc "Start Thin"
   task :start, :except => { :no_release => true } do
     run "cd #{current_path} ; RAILS_ENV=#{rails_env} #{bundle_cmd} exec thin start -C #{thin_config}"#
