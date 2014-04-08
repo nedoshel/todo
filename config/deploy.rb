@@ -113,7 +113,7 @@ namespace :faye do
   end
   desc "Stop Faye"
   task :stop do
-    run "kill `cat #{faye_pid}` || true"
+    run " kill -INT `cat #{faye_pid}` || true"
   end
 end
 
