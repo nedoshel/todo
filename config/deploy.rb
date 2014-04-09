@@ -122,7 +122,7 @@ end
 namespace :run_rsync do
   desc "Start sync.ru server"
   task :start do
-    run "cd #{release_path};RAILS_ENV=production bundle exec rackup sync.ru -S thin -E production -D -P #{faye_pid}"
+    run "cd #{release_path};RAILS_ENV=production bundle exec rackup sync.ru -s thin -E production -D -P #{faye_pid}"
   end
 
   desc "Stop sync.ru server"
