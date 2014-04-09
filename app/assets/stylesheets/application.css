@@ -2,5 +2,6 @@
  *= require bootstrap
  *= require bootstrap-datetimepicker
  *= require_self
+ *= require colorbox-rails
  *= require_tree .
  */

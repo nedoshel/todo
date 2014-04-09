@@ -122,8 +122,6 @@ end
 namespace :run_rsync do
   desc "Start sync.ru server"
   task :start do
-    #run "cd #{release_path} && RAILS_ENV=production bundle exec rackup sync.ru -E production -D -P #{faye_pid}"
-    #run "cd #{deploy_to}/current && bundle exec rackup sync.ru -E production -s thin --pid #{faye_pid} -D"
     run "cd #{release_path} && bundle exec rackup sync.ru -E production -s thin --pid #{faye_pid} -D"
 
   end
@@ -131,7 +129,6 @@ namespace :run_rsync do
   desc "Stop sync.ru server"
   task :stop do
     run "cd #{release_path};if [ -f #{faye_pid} ] && [ -e /proc/$(cat #{faye_pid}) ]; then kill -9 `cat #{faye_pid}`; fi"
-    #run "cd #{shared_path}/pids && rm -rf *"
   end
 
   desc "Restart sync.ru server"

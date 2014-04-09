@@ -3,9 +3,9 @@ tr
   td= task.title
   td= task.description
   td= task.task_at.localtime.strftime("%d.%m.%Y %H:%M")
-  td== task.is_complete ? "<i class='glyphicon glyphicon-ok'></i>" : "<i class='glyphicon glyphicon-remove'></i>"
   td= task.created_at.localtime.strftime("%d.%m.%Y %H:%M")
+  td== task.is_complete ? "<i class='glyphicon glyphicon-ok'></i>" : "<i class='glyphicon glyphicon-remove'></i>"
   td
-    = link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, edit_task_path(task), class: 'btn btn-default'
+    = link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, 'javascript:;', class: 'btn btn-default js-edit', data: { url: edit_task_path(task) }
     '
     = link_to "<i class='glyphicon glyphicon-trash'></i>".html_safe, task_path(task), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-danger', remote: :true

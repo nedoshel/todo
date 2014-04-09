@@ -57,6 +57,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    colorbox-rails (0.1.1)
+      jquery-rails
+      rails (>= 3.1.1)
     cookiejar (0.3.2)
     daemons (1.1.9)
     em-http-request (1.1.2)
@@ -189,6 +192,7 @@ DEPENDENCIES
   bootstrap3-datetimepicker-rails (~> 3.0.0)
   capistrano (= 2.15.5)
   coffee-rails (~> 4.0.0)
+  colorbox-rails
   faye
   jbuilder (~> 1.2)
   jquery-rails

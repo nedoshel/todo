@@ -1,11 +1,11 @@
-= simple_form_for Task.new, remote: true, html: { class: "form-horizontal new_task" } do |f|
+= simple_form_for @task || Task.new, remote: true, html: { class: "form-horizontal #{@task ? 'edit' : 'new'}_task" } do |f|
   .form-group
     = f.label :task_at
     .input-group.date.datetimepicker
-      = f.text_field :task_at, class: 'form-control'
+      = f.text_field :task_at, class: 'form-control', value: @task.try(:task_at).try(:strftime, "%d.%m.%Y %H:%M")
       span.input-group-addon
         span.glyphicon.glyphicon-calendar
   = f.input :title
   = f.input :description
   = f.input :is_complete
-  = f.submit t('helpers.links.create'), class: 'btn btn-primary'
+  = f.submit t("helpers.links.#{@task ? 'update' : 'create'}"), class: 'btn btn-primary'

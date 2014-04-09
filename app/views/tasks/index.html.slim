@@ -3,13 +3,13 @@ div class="page-header"
 table class="table table-striped"
   thead
     tr
-      th= Task.human_attribute_name(:id)
-      th= Task.human_attribute_name(:title)
-      th= Task.human_attribute_name(:description)
-      th= Task.human_attribute_name(:task_at)
-      th= Task.human_attribute_name(:is_complete)
-      th= Task.human_attribute_name(:created_at)
-      th
+      th.col-md-1= Task.human_attribute_name(:id)
+      th.col-md-2= Task.human_attribute_name(:title)
+      th.col-md-3= Task.human_attribute_name(:description)
+      th.col-md-2= Task.human_attribute_name(:task_at)
+      th.col-md-1= Task.human_attribute_name(:created_at)
+      th.col-md-1= Task.human_attribute_name(:is_complete)
+      th.col-md-2
   tbody
     = sync_new partial: 'task_list_view', resource: Task.new
     = sync partial: 'task_list_view', collection: @tasks

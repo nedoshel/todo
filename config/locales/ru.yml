@@ -15,4 +15,5 @@ ru:
   helpers:
     links:
       create: Создать
+      update: Изменить
 

@@ -19,6 +19,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    render 'edit', layout: false
   end
 
   # POST /tasks
@@ -28,10 +29,10 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        #format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.js { head :no_content }
       else
-        format.html { render action: 'new' }
+        #format.html { render action: 'new' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +43,10 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        #format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.js { head :no_content }
       else
-        format.html { render action: 'edit' }
+        #format.html { render action: 'edit' }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
