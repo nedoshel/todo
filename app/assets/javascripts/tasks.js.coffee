@@ -3,7 +3,7 @@ window.initDatetimepicker = () ->
     language: 'ru'
     weekStart: 1
     orientation: "auto top"
-    format: "dd.mm.yyyy HH:i"
+    format: "dd.mm.yyyy HH:ii"
 
 $ ->
   window.initDatetimepicker()

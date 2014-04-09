@@ -2,8 +2,8 @@ tr
   td= link_to task.id, task_path(task)
   td= task.title
   td= task.description
-  td= task.task_at.localtime.strftime("%d.%m.%Y %H:%M")
-  td= task.created_at.localtime.strftime("%d.%m.%Y %H:%M")
+  td= task.task_at.strftime("%d.%m.%Y %H:%M")
+  td= task.created_at.strftime("%d.%m.%Y %H:%M")
   td== task.is_complete ? "<i class='glyphicon glyphicon-ok'></i>" : "<i class='glyphicon glyphicon-remove'></i>"
   td
     = link_to "<i class='glyphicon glyphicon-pencil'></i>".html_safe, 'javascript:;', class: 'btn btn-default js-edit', data: { url: edit_task_path(task) }
