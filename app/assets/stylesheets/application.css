@@ -1,6 +1,7 @@
 /*
  *= require bootstrap
  *= require bootstrap-datetimepicker
+ *= require bootstrap_and_overrides
  *= require_self
  *= require colorbox-rails
  *= require colorbox-overrides
